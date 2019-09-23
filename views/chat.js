@@ -1,7 +1,8 @@
 
 $(function(){
    	//make connection
-	var socket = io.connect('http://chatfast.herokuapp.com/')
+	var url=window.location.href;
+	var socket = io.connect(url)
 
 	//buttons and inputs
 	var message = $("#message")
