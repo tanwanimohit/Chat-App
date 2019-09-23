@@ -1,0 +1,29 @@
+{
+  "name": "chat-application",
+  "version": "1.0.0",
+  "description": "A simple Socket.io Chat Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/tanwanimohit/chat-aoo"
+  },
+  "keywords": [
+    "chat",
+    "chat",
+    "app",
+    "web",
+    "nodejs"
+  ],
+  "author": "Mohit Tanwani",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "mongodb": "^3.3.2",
+    "socket.io": "^2.3.0"
+  }
+}

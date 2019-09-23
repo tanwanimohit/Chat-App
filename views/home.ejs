@@ -1,0 +1,53 @@
+ <!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+	<link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
+
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; color:white; }
+      body { font: 13px Helvetica, Arial; background:#3c40c6;  }
+      form { background: #fff; padding: 10px 3px; position: fixed; bottom: 0; width: 100%; border-radius: 10px 10px 0px 0px;  }
+      form input { border: 0; padding: 9px; width: 80%; margin-right: .5%; border:2px solid #3c40c6; border-radius:3px; color:#3c40c6; }
+      form button { width: 10%; background: DodgerBlue; border: none; padding: 10px; min-width:50px;  font-weight:bold; }
+		p.message {
+			margin: 0px;
+			width: 100%;
+			height: 40px;
+			font-size: 2vh;
+			font-family: 'Comfortaa', sans-serif;
+			padding: 1vh;
+		}
+
+		.message:nth-child(even) {
+			background-color: #ff3f34;
+		}
+
+		.message:nth-child(odd) {
+			background-color: #ffd32a;
+		}
+		section#chatroom {
+		  
+			height: 85%;
+			overflow: auto;
+		}
+
+    </style>
+  </head>
+  <body>
+    <section id="chatroom">
+      <section id="feedback"></section>
+    </section>
+    <form action="">
+		<center>
+			<input id="message" autocomplete="off" />
+			      <button id="send_message" type="button">Send</button>
+		</center>
+    </form>
+  </body>
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="chat.js"></script>
+</html>
