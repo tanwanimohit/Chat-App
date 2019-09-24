@@ -1,15 +1,17 @@
 
 $(function(){
    	//make connection
-	var socket = io.connect('http://chatfast.herokuapp.com/')
+	var url=window.location.href;
+	var socket = io.connect(url)
 
 	//buttons and inputs
 	var message = $("#message")
-	//var username = $("#username")
 	var send_message = $("#send_message")
-	//var send_username = $("#send_username")
 	var chatroom = $("#chatroom")
 	var feedback = $("#feedback")
+	var username= $("#userName")
+	var change_user = $("#change")
+	
 
 	//Emit message
 	send_message.click(function(){
@@ -20,26 +22,47 @@ $(function(){
 
 	//Listen on new_message
 	socket.on("new_message", (data) => {
-		//feedback.html('');
+		feedback.html('');
 		message.val('');
 	//	console.log(data);
-		chatroom.append("<p class='message'> " + data.message + "</p>")
+		chatroom.append("<p class='message'> <b>"+data.username +"</b> : " + data.message + "</p>")
+		chatroom.scrollTop(chatroom.prop('scrollHeight'));
+		//chatroom.scrollTop=chatroom.scrollHeight;
 	})
 
 	//Emit a username
-	/*send_username.click(function(){
+	change_user.click(function(){
 		socket.emit('change_username', {username : username.val()})
-	})*/
+	})
+	
+	//New User
+	socket.on("custom_message", (data) => {
+		feedback.html('');
+		message.val('');
+	//	console.log(data);
+		
+		chatroom.append("<p class='message'> <b>"+data.message+"</b> </p>")
+		
+		chatroom.scrollTop(chatroom.prop('scrollHeight'));
+		//chatroom.scrollTop=chatroom.scrollHeight;
+	})
 
 	//Emit typing
-	message.bind("keypress", () => {
-		socket.emit('typing')
+	message.bind("keypress", (event) => {
+		
+		if (event.keyCode === 13) {
+			// Cancel the default action, if needed
+			event.preventDefault();
+			// Trigger the button element with a click
+			send_message.click();
+		}
+		else socket.emit('typing')
 	})
-/*
+
 	//Listen on typing
 	socket.on('typing', (data) => {
 		feedback.html("<p><i>" + data.username + " is typing a message..." + "</i></p>")
-	})*/
+	})
 });
 
 

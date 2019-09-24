@@ -1,52 +1,130 @@
- <!doctype html>
 <html>
   <head>
-    <title>Socket.IO chat</title>
+    <title>Zhat - Chat with a Zap</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-	<link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
-
-	
+	<link href="http://fonts.googleapis.com/css?family=Comfortaa|Fredoka+One" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; color:white; }
-      body { font: 13px Helvetica, Arial; background:#3c40c6;  }
-      form { background: #fff; padding: 10px 3px; position: fixed; bottom: 0; width: 100%; border-radius: 10px 10px 0px 0px;  }
-      form input { border: 0; padding: 9px; width: 80%; margin-right: .5%; border:2px solid #3c40c6; border-radius:3px; color:#3c40c6; }
-      form button { width: 10%; background: DodgerBlue; border: none; padding: 10px; min-width:50px;  font-weight:bold; }
+      body { font: 13px Helvetica, Arial; background:#00e676;  }
+      .form { background: #fff; padding: 10px 3px; position: fixed; bottom: 0; width: 100%; border-radius: 10px 10px 0px 0px;  }
+      .form input { border: 0; padding: 9px; width: 80%; margin-right: .5%; border:2px solid #3c40c6; border-radius:3px; color:#3c40c6; }
+      .form button { width: 10%; background: DodgerBlue; border: none; padding: 10px; min-width:50px;  font-weight:bold; }
+		#feedback
+		{
+			margin:1%;
+		}
 		p.message {
-			margin: 0px;
-			width: 100%;
-			height: 40px;
+			margin: 1%;
+			width: 98%;
+			min-height: 40px;
+			overflow-wrap: break-word;
 			font-size: 2vh;
 			font-family: 'Comfortaa', sans-serif;
 			padding: 1vh;
+			color:DodgerBlue;
+			border-radius:5px;
+			
 		}
-
+		b
+		{
+			color:dodgerblue;
+		}
 		.message:nth-child(even) {
-			background-color: #ff3f34;
+			background-color: #fff;
 		}
 
 		.message:nth-child(odd) {
-			background-color: #ffd32a;
+			background-color: #fff;
 		}
 		section#chatroom {
-		  
-			height: 85%;
-			overflow: auto;
+			padding-top:5px;
+			max-height:78%;
+			overflow:scroll ;
+			overflow: -moz-scrollbars-none;
 		}
-
+		#chatroom::-webkit-scrollbar { 
+                display: none; 
+        }
+		section#head
+		{
+			background-color:white;
+			min-height:10%;
+			border-radius: 0px 0px 10px 10px;
+			display:flex;
+			justify-content:center;
+			align-items:center;
+			width:100%;
+			flex-direction:row;
+			
+		}
+		section#heading
+		{
+			
+		}
+		section #heading h1
+		{
+			font-family: 'Fredoka One';
+			font-size: 300%;
+			font-weight:normal;
+			color: dodgerblue;
+			
+		}
+		section#username
+		{
+			
+			color:black;
+			
+		}
+		#username p
+		{
+			color:DodgerBlue;
+			font-weight:bold;
+			margin:10px;
+			
+		}
+		
     </style>
   </head>
   <body>
+	  <section id="head">
+		<center>
+		  <section id="heading">
+		   <h1>&#9889;Zhat</h1>
+		  </section>
+			
+		  <section id="username">
+		    <p data-toggle="modal" data-target="#usernamechange">&#9997; Username </p>
+		  </section>
+		  </center>
+	  </section>
     <section id="chatroom">
       <section id="feedback"></section>
     </section>
-    <form action="">
+    <section class="form">
 		<center>
-			<input id="message" autocomplete="off" />
+			<input id="message" autocomplete="off" placeholder="Type your thoughts out !" />
 			      <button id="send_message" type="button">Send</button>
 		</center>
-    </form>
+    </section>
+	
+	<div class="modal fade" id="usernamechange"  role="dialog" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" style="color:DodgerBlue;">Edit UserName</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body" ><input id="userName"  class="border rounded border-info swing animated" type="text" name="username" placeholder="Enter New Username" minlength="5" required="" style="width: 70%; min-height:35px; padding:5px; color:DodgerBlue;"></div>
+                <div class="modal-footer"><button class="btn btn-light"  type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" id="change" data-dismiss="modal" type="button">Save</button></div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+	
   </body>
 	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="chat.js"></script>
