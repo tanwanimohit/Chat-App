@@ -4,4 +4,4 @@ This is a Prototype of a web chat app, main aim of this project is to make an in
 ## How to Clone?
 
 - Fork the repo or `git clone https://github.com/tanwanimohit/Chat-App.git`
-- To run it just type `node index.js`
+-Then you have to install node in your system to  run and  just type `node index.js`
